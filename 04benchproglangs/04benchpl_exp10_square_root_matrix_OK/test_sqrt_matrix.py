@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-
-
 import numpy as np
 import scipy.linalg
 import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "speedupy"))
 
 import time
-from intpy.intpy import initialize_intpy, deterministic
+from intpy import initialize_intpy, deterministic
 
 
 @deterministic
@@ -16,6 +16,7 @@ def sqrt_matrix(A):
         Take the square root of matrix A
     """
     B = scipy.linalg.sqrtm(A)
+    return B
 
 @initialize_intpy(__file__)
 def main():
