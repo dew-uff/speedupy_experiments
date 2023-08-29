@@ -1,9 +1,12 @@
-import numpy as np
 import sys
 
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "speedupy"))
+
+import numpy as np
 import time
 
-from intpy.intpy import initialize_intpy, deterministic
+from intpy import initialize_intpy, deterministic
 
 @deterministic
 def loop_time_step(u):
@@ -102,21 +105,23 @@ def vectorized_solver(n):
 
 
 # number of grid points
+# def main0(num_points):
+    
+# def main1(num_points):
+    
 @initialize_intpy(__file__)
-def main0(num_points):
+def main():
+    num_points = int(sys.argv[1])
+    #print('LOOP')
+    dti = time.perf_counter()
+    #main0(num_points)
     (u, error, iteration) = loop_solver(num_points)
-    
-def main1(num_points):
+    print(time.perf_counter() - dti)
+    #print('VECTOR')
+    dti = time.perf_counter()
+    #main1(num_points)
     (u, error, iteration) = vectorized_solver(num_points)
-    
+    print(time.perf_counter() - dti)
 
 if __name__ == '__main__':
-    num_points = int(sys.argv[1])
-    print('LOOP')
-    dti = time.perf_counter()
-    main0(num_points)
-    print(time.perf_counter() - dti)
-    print('VECTOR')
-    dti = time.perf_counter()
-    main1(num_points)
-    print(time.perf_counter() - dti)
+    main()
