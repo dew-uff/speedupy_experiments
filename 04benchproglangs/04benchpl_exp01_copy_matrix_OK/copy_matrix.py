@@ -3,7 +3,9 @@
 import numpy as np
 import sys
 import time
-from intpy.intpy import deterministic, initialize_intpy
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "speedupy"))
+from intpy import deterministic, initialize_intpy
 
 
 @deterministic
@@ -31,7 +33,7 @@ if len(sys.argv) < 1:
     print('Please specify matrix dimensions')
     sys.exit()
 
-initialize_intpy(__file__)
+@initialize_intpy(__file__)
 def main():
     dimension = int(sys.argv[1])
     A = np.random.rand(dimension, dimension, 3)
@@ -42,7 +44,6 @@ def main():
     t2 = time.perf_counter()
     print(t1-t0)
     print(t2-t1)
-    print('')
 
 
 if __name__ == '__main__':
