@@ -1,10 +1,12 @@
-
 import numpy as np
 import sys
 
 import time
 
-from intpy.intpy import initialize_intpy, deterministic
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "speedupy"))
+
+from intpy import initialize_intpy, deterministic
 
 @deterministic
 def belief_propagation(N):
