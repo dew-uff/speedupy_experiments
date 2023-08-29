@@ -3,7 +3,10 @@
 import sys
 import time
 
-from intpy.intpy import deterministic, initialize_intpy
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "speedupy"))
+
+from intpy import deterministic, initialize_intpy
 
 @deterministic
 def look_and_say_sequence(starting_sequence, n):
@@ -41,7 +44,7 @@ def main():
     t0 = time.perf_counter()
     seq = look_and_say_sequence("1223334444", N)
     print(time.perf_counter() - t0)
-    print('')
+    
 
 
 if __name__ == '__main__':
