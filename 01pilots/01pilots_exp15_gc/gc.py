@@ -1,8 +1,8 @@
-from pathlib import Path
 import sys
-sys.path.append(str(Path(__file__).parent.parent.parent))
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent / "speedupy"))
 
-from intpy.intpy import initialize_intpy, deterministic
+from intpy import initialize_intpy, deterministic
 
 import time
 import sys
@@ -28,7 +28,9 @@ def main(seq):
   
 
 if __name__ == "__main__":
-    seq = (sys.argv[1])
+    texto = ''
+    with open(sys.argv[1]) as f:
+        texto = "".join(f.readlines())
     start = time.perf_counter()
-    main(seq)
+    main(texto)
     print(time.perf_counter()-start)
