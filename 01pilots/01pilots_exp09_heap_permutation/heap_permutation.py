@@ -2,10 +2,9 @@ import time
 import sys
 
 from pathlib import Path
-import sys
-sys.path.append(str(Path(__file__).parent.parent.parent))
+sys.path.append(str(Path(__file__).parent / "speedupy"))
 
-from intpy.intpy import initialize_intpy, deterministic
+from intpy import initialize_intpy, deterministic
 
 @deterministic
 def heap_permutation(data, n):
@@ -18,14 +17,12 @@ def heap_permutation(data, n):
             data[i], data[n - 1] = data[n - 1], data[i]
         else:
             data[0], data[n - 1] = data[n - 1], data[0]
+    return data
 
 
 @initialize_intpy(__file__)
 def main(n):
-    #data = [1, 2, 3, 4, 5, 6]
-    #data2 = list(range(8))
     data2 = list(range(n))
-    print(data2)
     start_time = time.perf_counter()
     heap_permutation(data2, len(data2))
     end_time = time.perf_counter()
