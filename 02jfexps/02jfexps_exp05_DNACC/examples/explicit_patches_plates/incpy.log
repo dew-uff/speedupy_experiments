@@ -1,0 +1,6 @@
+=== 2023-06-28 00:04:05 START | TIME_LIMIT 1 sec | IGNORE ['/home/joaolopez/IncPy/Lib/']
+CANNOT_MEMOIZE run [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/DNACC/DNACC/examples/explicit_patches_plates/explicit_patches_plates.py] | memo table entry unpicklable | runtime 14687 ms
+CANNOT_MEMOIZE run [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/DNACC/DNACC/examples/explicit_patches_plates/explicit_patches_plates.py] | impure because run [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/DNACC/DNACC/examples/explicit_patches_plates/explicit_patches_plates.py] mutates its argument | runtime 14348 ms
+CANNOT_MEMOIZE run [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/DNACC/DNACC/examples/explicit_patches_plates/explicit_patches_plates.py] | impure because run [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/DNACC/DNACC/examples/explicit_patches_plates/explicit_patches_plates.py] mutates its argument | runtime 13984 ms
+=== 2023-06-28 00:04:48 END
+
