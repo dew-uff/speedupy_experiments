@@ -1,0 +1,5 @@
+=== 2023-06-26 20:35:49 START | TIME_LIMIT 1 sec | IGNORE ['/home/joaolopez/IncPy/Lib/']
+CANNOT_MEMOIZE read_array [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/EPR/EPR_env/lib/python2.6/site-packages/numpy/lib/format.py] | impure because read_array [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/EPR/EPR_env/lib/python2.6/site-packages/numpy/lib/format.py] mutates its argument | runtime 47853 ms
+CANNOT_MEMOIZE load [/home/joaolopez/Experimentos/IncPy/ExperimentosJF/EPR/EPR_env/lib/python2.6/site-packages/numpy/lib/npyio.py] | impure because mutate global var ('/usr/local/lib/python2.6/compiler/ast.py', 'nodes') | runtime 47853 ms
+=== 2023-06-26 20:36:37 END
+
