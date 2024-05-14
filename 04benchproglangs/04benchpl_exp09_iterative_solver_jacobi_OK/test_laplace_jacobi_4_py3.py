@@ -58,7 +58,6 @@ def loop_solver(n):
 #---------------------------
 # Function: vector_time_step
 #---------------------------
-@deterministic
 def vector_time_step(u):
     """
         Take a time step in the desired numerical solution v 
@@ -76,7 +75,6 @@ def vector_time_step(u):
 #----------------------------
 # Function: vectorized_solver
 #----------------------------
-@deterministic
 def vectorized_solver(n):
     """
         Find the desired numerical solution using vectorization
@@ -105,7 +103,6 @@ def vectorized_solver(n):
     
 # def main1(num_points):
     
-@initialize_intpy(__file__)
 def main():
     num_points = int(sys.argv[1])
     #print('LOOP')
