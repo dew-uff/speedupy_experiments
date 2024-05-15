@@ -1,4 +1,4 @@
-from intpy import initialize_intpy, deterministic
+# from intpy import initialize_intpy, deterministic
 import time
 import sys
 import math
@@ -190,7 +190,7 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
 #p4 = (7,5)
 
 
-@deterministic
+# @deterministic
 def cubic( p1, p2, p3, p4 ):
     x1,y1 = p1
     x2,y2 = p2
@@ -207,7 +207,7 @@ def cubic( p1, p2, p3, p4 ):
     return points
 
 
-@initialize_intpy(__file__)
+# @initialize_intpy(__file__)
 def main(n1, n2, n3, n4, n5, n6, n7, n8):
     p1 = (n1,n2)
     p2 = (n3,n4)
