@@ -5,7 +5,7 @@ import sys
 
 import time
 
-from intpy.intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 #--------------------------------
 # Function: matrix_multiplication
@@ -18,7 +18,7 @@ def matrix_multiplication(A, B):
     """
     C = np.dot(A, B)
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(A,B):
     matrix_multiplication(A, B)
 
