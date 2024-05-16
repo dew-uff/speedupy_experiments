@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
 
-from intpy import deterministic, initialize_intpy
+from speedupy.speedupy import deterministic, initialize_speedupy
 
 @deterministic
 def look_and_say_sequence(starting_sequence, n):
@@ -38,7 +38,7 @@ if len(sys.argv) < 2:
     print('Please specify a number.')
     sys.exit()
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main():
     N = int(sys.argv[1])
     t0 = time.perf_counter()
