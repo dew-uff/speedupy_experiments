@@ -5,7 +5,7 @@ import time
 
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 @deterministic
 def iterative_fibonacci(n):
@@ -34,7 +34,7 @@ if len(sys.argv) < 1:
     sys.exit()
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main():
     N = int(sys.argv[1])
     t0 = time.perf_counter()
