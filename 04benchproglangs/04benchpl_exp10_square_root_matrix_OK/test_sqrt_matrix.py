@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
 
 import time
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 
 @deterministic
@@ -18,7 +18,7 @@ def sqrt_matrix(A):
     B = scipy.linalg.sqrtm(A)
     return B
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main():
     n = int(sys.argv[1])
     A = np.ones((n, n))
