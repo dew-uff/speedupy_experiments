@@ -8,7 +8,7 @@ import sys
 import time
 
 #import benchmark_decorator as dectimer
-from intpy.intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 #@dectimer.bench_time(3)
 @deterministic
@@ -20,7 +20,7 @@ def compute_FFT(n):
     result = np.fft.fft2(matrix)
     result = np.abs(result)
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(n):
     compute_FFT(n)
 
