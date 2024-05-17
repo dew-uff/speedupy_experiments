@@ -6,7 +6,7 @@ sys.path.append(str(Path(__file__).parent / "speedupy"))
 import numpy as np
 import time
 
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 @deterministic
 def loop_time_step(u):
@@ -109,7 +109,7 @@ def vectorized_solver(n):
     
 # def main1(num_points):
     
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main():
     num_points = int(sys.argv[1])
     #print('LOOP')
