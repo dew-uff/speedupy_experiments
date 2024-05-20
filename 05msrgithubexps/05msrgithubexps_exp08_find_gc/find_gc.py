@@ -1,4 +1,4 @@
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 import time
 import sys
 
@@ -17,7 +17,7 @@ def find_gc(seq: str) -> float:
    
  
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(seq):
     print(find_gc(seq))
   
