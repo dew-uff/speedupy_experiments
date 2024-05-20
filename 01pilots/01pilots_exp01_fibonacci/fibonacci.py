@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
 
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 
 @deterministic
@@ -14,7 +14,7 @@ def fib(n):
     return fib(n-1) + fib(n-2)
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(n):
     print(fib(n))
 
