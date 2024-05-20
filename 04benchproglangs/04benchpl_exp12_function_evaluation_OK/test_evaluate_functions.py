@@ -5,7 +5,7 @@ import sys
 
 import time
 
-from intpy.intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 @deterministic
 def evaluate_functions(n):
@@ -23,7 +23,7 @@ def evaluate_functions(n):
         vector2 = np.tan(vector1)
         vector1 = np.arctan(vector2)
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(n):
     evaluate_functions(n)
 
