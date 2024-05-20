@@ -1,4 +1,4 @@
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 import time
 import sys
 import itertools
@@ -15,7 +15,7 @@ def chunks(l):
         return x
       
       
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(l):
     print(chunks(l))
     
