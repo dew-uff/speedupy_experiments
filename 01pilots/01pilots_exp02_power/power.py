@@ -5,8 +5,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
 
 
-# from intpy.intpy import initialize_intpy, deterministic
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 
 @deterministic
@@ -16,7 +15,7 @@ def pow(n, m):
     return n*pow(n, m-1)
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(n, m):
     print(pow(n, m))
 
