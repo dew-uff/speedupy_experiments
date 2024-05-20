@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import fsolve
 import time
 import sys
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 # Define parameters
 
 T = 1
@@ -21,16 +21,20 @@ F_list = np.empty_like(x_list)
 def solve(n, F_solution):
     return fsolve(func=lambda x: n * C / (1 + Kd1 / x) + n2 * C / (1 + Kd2 / x) - T, x0=F_solution, xtol=1e-6)
 
-@initialize_intpy(__file__)
+@deterministic
 def main(F_solution):
     for i in range(n_solutions):
         # Define function
         F_solution=solve(x_list[i], F_solution)
         F_list[i]=F_solution
 
-if __name__ == '__main__':
+@initialize_speedupy
+def exp_main():
     F_solution = int(sys.argv[1])
     F_solution = F_solution/10
     start = time.perf_counter()
     main(F_solution)
     print(time.perf_counter() - start)
+
+if __name__ == '__main__':
+    exp_main()
