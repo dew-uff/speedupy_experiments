@@ -8,7 +8,7 @@ sys.path.append(str(Path(__file__).parent / "speedupy"))
 
 import time
 
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 ##integrand = lambda x: np.exp(x)
 
@@ -34,7 +34,7 @@ def compute_quadrature(n):
     return sum(w * integrand(t)) * 0.5*(b - a)
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(order):
     compute_quadrature(order)
 
