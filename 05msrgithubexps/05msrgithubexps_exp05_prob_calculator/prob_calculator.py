@@ -1,5 +1,5 @@
 import time
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy
 import sys
 import random
 import copy
@@ -71,7 +71,6 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
 
 
 
-@deterministic
 def calc_probability(n):
     hat = Hat(blue=4, red=2, green=6)
     return experiment(
@@ -82,7 +81,7 @@ def calc_probability(n):
         num_experiments=n)
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(n):
     return calc_probability(n)
 
