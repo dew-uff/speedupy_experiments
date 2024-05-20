@@ -4,8 +4,7 @@ from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from intpy import initialize_intpy, deterministic
-#from speedupy.intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 
 @deterministic
@@ -21,7 +20,7 @@ def quicksort(list):
     return quicksort(lesser) + equal + quicksort(greater)
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(unsort_list):
     print(quicksort(unsort_list))
 
