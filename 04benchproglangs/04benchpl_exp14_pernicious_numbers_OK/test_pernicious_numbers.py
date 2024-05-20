@@ -1,7 +1,7 @@
 import sys
 import time
 
-from intpy.intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 @deterministic
 def is_prime_number(n):
@@ -28,7 +28,8 @@ def get_number_of_ones(n):
       Deterine the number of 1s ins the binary representation of
       and integer n.
     """
-    return bin(n).count("1")
+    temp = bin(n)
+    return temp.count("1")
 
 
 @deterministic
@@ -46,7 +47,7 @@ def find_pernicious_numbers(n):
     #print(i-1)
     return i-1, counter
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(N):
     find_pernicious_numbers(N)
     
