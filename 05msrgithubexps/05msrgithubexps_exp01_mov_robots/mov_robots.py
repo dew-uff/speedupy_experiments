@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-from intpy import deterministic,initialize_intpy
+from speedupy.speedupy import deterministic, initialize_speedupy
 
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
@@ -146,20 +146,24 @@ def finalVisualization(x_left_wheel_right, y_left_wheel_right, x_left_wheel_left
     #           X_center, Y_center,
     #           X_right_wheel, Y_right_wheel)
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main():
     # STRAIGHT MOTION
-    X_left_wheel_straight = readData('source/straightWheelPositions.csv')[0][36:].split(',')
+    temp1 = readData('source/straightWheelPositions.csv')[0][36:]
+    X_left_wheel_straight = temp1.split(',')
     
     X_left_wheel_straight_new = typeConverter(X_left_wheel_straight, float)
 
-    Y_left_wheel_straight = readData('source/straightWheelPositions.csv')[1][36:].split(',')
+    temp2 = readData('source/straightWheelPositions.csv')[1][36:]
+    Y_left_wheel_straight = temp2.split(',')
     Y_left_wheel_straight_new = typeConverter(Y_left_wheel_straight, float)
 
-    X_right_wheel_straight = readData('source/straightWheelPositions.csv')[2][36:].split(',')
+    temp3 = readData('source/straightWheelPositions.csv')[2][36:]
+    X_right_wheel_straight = temp3.split(',')
     X_right_wheel_straight_new = typeConverter(X_right_wheel_straight, float)
 
-    Y_right_wheel_straight = readData('source/straightWheelPositions.csv')[3][36:].split(',')
+    temp4 = readData('source/straightWheelPositions.csv')[3][36:]
+    Y_right_wheel_straight = temp4.split(',')
     Y_right_wheel_straight_new = typeConverter(Y_right_wheel_straight, float)
 
     x_final_pose_straight, y_final_pose_straight = finalPoseEstimation('straight', X_left_wheel_straight_new,
@@ -167,32 +171,40 @@ def main():
                                                                        X_right_wheel_straight_new,
                                                                        Y_right_wheel_straight_new)
     # LEFT MOTION
-    X_left_wheel_left = readData('source/leftWheelPositions.csv')[0][32:].split(',')
+    temp5 = readData('source/leftWheelPositions.csv')[0][32:]
+    X_left_wheel_left = temp5.split(',')
     X_left_wheel_left_new = typeConverter(X_left_wheel_left, float)
 
-    Y_left_wheel_left = readData('source/leftWheelPositions.csv')[1][32:].split(',')
+    temp6 = readData('source/leftWheelPositions.csv')[1][32:]
+    Y_left_wheel_left = temp6.split(',')
     Y_left_wheel_left_new = typeConverter(Y_left_wheel_left, float)
 
-    X_right_wheel_left = readData('source/leftWheelPositions.csv')[2][32:].split(',')
+    temp7 = readData('source/leftWheelPositions.csv')[2][32:]
+    X_right_wheel_left = temp7.split(',')
     X_right_wheel_left_new = typeConverter(X_right_wheel_left, float)
 
-    Y_right_wheel_left = readData('source/leftWheelPositions.csv')[3][32:].split(',')
+    temp8 = readData('source/leftWheelPositions.csv')[3][32:]
+    Y_right_wheel_left = temp8.split(',')
     Y_right_wheel_left_new = typeConverter(Y_right_wheel_left, float)
 
     x_final_pose_left, y_final_pose_left = finalPoseEstimation('left', X_left_wheel_left_new, Y_left_wheel_left_new,
                                                                X_right_wheel_left_new, Y_right_wheel_left_new)
 
     # RIGHT MOTION
-    X_left_wheel_right = readData('source/rightWheelPositions.csv')[0][33:].split(',')
+    temp9 = readData('source/rightWheelPositions.csv')[0][33:]
+    X_left_wheel_right = temp9.split(',')
     X_left_wheel_right_new = typeConverter(X_left_wheel_right, float)
 
-    Y_left_wheel_right = readData('source/rightWheelPositions.csv')[1][33:].split(',')
+    temp10 = readData('source/rightWheelPositions.csv')[1][33:]
+    Y_left_wheel_right = temp10.split(',')
     Y_left_wheel_right_new = typeConverter(Y_left_wheel_right, float)
 
-    X_right_wheel_right = readData('source/rightWheelPositions.csv')[2][33:].split(',')
+    temp11 = readData('source/rightWheelPositions.csv')[2][33:]
+    X_right_wheel_right = temp11.split(',')
     X_right_wheel_right_new = typeConverter(X_right_wheel_right, float)
 
-    Y_right_wheel_right = readData('source/rightWheelPositions.csv')[3][33:].split(',')
+    temp12 = readData('source/rightWheelPositions.csv')[3][33:]
+    Y_right_wheel_right = temp12.split(',')
     Y_right_wheel_right_new = typeConverter(Y_right_wheel_right, float)
 
     x_final_pose_right, y_final_pose_right = finalPoseEstimation('right', X_left_wheel_right_new,
