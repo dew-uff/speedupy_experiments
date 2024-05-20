@@ -1,4 +1,4 @@
-# from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 import time
 import sys
 import math
@@ -14,13 +14,13 @@ m_approximation_scale         = 1.0/4
 m_distance_tolerance_square   = (0.5 / m_approximation_scale)**2
 epsilon                       = 1e-10
 
-
+@deterministic
 def calc_sq_distance( x1,y1, x2,y2 ):
     dx = x2-x1
     dy = y2-y1
     return dx * dx + dy * dy
 
-
+@deterministic
 def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
     if level > curve_recursion_limit:
         return
@@ -190,7 +190,7 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
 #p4 = (7,5)
 
 
-# @deterministic
+@deterministic
 def cubic( p1, p2, p3, p4 ):
     x1,y1 = p1
     x2,y2 = p2
@@ -207,7 +207,7 @@ def cubic( p1, p2, p3, p4 ):
     return points
 
 
-# @initialize_intpy(__file__)
+@initialize_speedupy
 def main(n1, n2, n3, n4, n5, n6, n7, n8):
     p1 = (n1,n2)
     p2 = (n3,n4)
