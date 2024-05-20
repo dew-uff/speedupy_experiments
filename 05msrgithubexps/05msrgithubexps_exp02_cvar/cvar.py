@@ -1,4 +1,4 @@
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 import time
 import sys
 import numpy as np
@@ -7,8 +7,8 @@ import numpy as np
 
 @deterministic
 def get_empirical_CVaR(rewards, alpha = 0.9):
-    
-    a = sorted(list(rewards).copy(), reverse= True)
+    temp1 = list(rewards)
+    a = sorted(temp1.copy(), reverse= True)
 
     for i in range(len(a)):
       a[i] = int(a[i])
@@ -32,7 +32,7 @@ def get_empirical_CVaR(rewards, alpha = 0.9):
    
  
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(rewards):
     print(get_empirical_CVaR(rewards, 0.9))
   
