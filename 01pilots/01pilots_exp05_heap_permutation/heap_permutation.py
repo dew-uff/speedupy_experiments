@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "speedupy"))
 
-from intpy import initialize_intpy, deterministic
+from speedupy.speedupy import initialize_speedupy, deterministic
 
 @deterministic
 def heap_permutation(data, n):
@@ -20,7 +20,7 @@ def heap_permutation(data, n):
     return data
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main(n):
     data2 = list(range(n))
     start_time = time.perf_counter()
