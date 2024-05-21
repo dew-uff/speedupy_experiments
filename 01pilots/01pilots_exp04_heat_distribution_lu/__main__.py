@@ -9,11 +9,11 @@ from model import Model
 #4Win mode: SET PYTHONPATH='path/to/directory'
 #echo $PYTHONPATH
 
-from intpy.intpy import initialize_intpy
+from speedupy.speedupy import initialize_speedupy
 import time
 
 
-@initialize_intpy(__file__)
+@initialize_speedupy
 def main():
     dimensionality = (2,2)
     nx = 0.15
