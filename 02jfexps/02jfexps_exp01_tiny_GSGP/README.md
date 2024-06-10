@@ -1,1 +1,1 @@
-This experiment is available at https://github.com/JoaoLopez/Tiny-GSGP-with-speedupy.
+The scripts for this experiment adapted for use with SpeeduPy are available at https://github.com/JoaoLopez/Tiny-GSGP-with-speedupy.
