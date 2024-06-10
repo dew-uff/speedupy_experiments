@@ -29,6 +29,7 @@ if len(sys.argv) < 1:
     sys.exit()
 
 def main():
+    np.random.seed(0)
     dimension = int(sys.argv[1])
     A = np.random.rand(dimension, dimension, 3)
     t0 = time.perf_counter()
