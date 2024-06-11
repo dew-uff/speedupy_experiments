@@ -13,6 +13,7 @@ def belief_propagation(N):
     """
         Run the belief propagation algorithm N times
     """
+    np.random.seed(0)
     dim = 5000
     A = np.random.rand(dim, dim)
     x = np.ones((dim,))
