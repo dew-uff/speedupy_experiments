@@ -14,24 +14,30 @@ def strip_word(word):
     temp1 = temp1.strip('\"')
     return temp1.lower()
 
-@deterministic
 def count_words_dictionary(file_name):
-    dictionary = defaultdict(int)
     temp2 = open(file_name)
-    temp2 = temp2.read()
-    for word in temp2.split():
+    data = temp2.read()
+    return process_count_words_dictionary(data)
+
+@deterministic
+def process_count_words_dictionary(data):
+    dictionary = defaultdict(int)
+    for word in data.split():
         dictionary[strip_word(word)] += 1
     del dictionary['']
     return len(dictionary)
 
-@deterministic 
 def count_words_set(file_name):
     with open(file_name, "r") as file_id:
-        temp3 = file_id.read()
-        lines = temp3.splitlines()
-        uniques = set()
-        for line in lines:
-            uniques |= set(strip_word(m) for m in line.split())
+        data = file_id.read()
+        return process_count_words_set(data)
+
+@deterministic
+def process_count_words_set(data):
+    lines = data.splitlines()
+    uniques = set()
+    for line in lines:
+        uniques |= set(strip_word(m) for m in line.split())
     uniques.remove('')
     #print(uniques)
     return len(uniques)
