@@ -14,11 +14,13 @@ def matrix_multiplication(A, B):
         Evaluate the dot product of matrices A and B using numpy
     """
     C = np.dot(A, B)
+    return C
 
 def main(A,B):
     matrix_multiplication(A, B)
 
 if __name__ == '__main__':
+    np.random.seed(0)
     N = int(sys.argv[1])
     A = np.random.rand(N, N)
     B = np.random.rand(N, N)
