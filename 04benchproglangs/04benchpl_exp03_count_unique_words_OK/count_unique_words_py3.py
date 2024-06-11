@@ -46,10 +46,8 @@ def main():
     file_name = sys.argv[1]
     t0 = time.perf_counter()
     n = count_words_dictionary(file_name)
-    print(n)
     t1 = time.perf_counter()
     n = count_words_set(file_name)
-    print(n)
     t2 = time.perf_counter()
     print(t1-t0)
     print(t2-t1)
