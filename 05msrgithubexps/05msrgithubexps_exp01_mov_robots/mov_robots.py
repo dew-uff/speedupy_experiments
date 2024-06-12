@@ -145,6 +145,7 @@ def finalVisualization(x_left_wheel_right, y_left_wheel_right, x_left_wheel_left
     #           X_left_wheel, Y_left_wheel,
     #           X_center, Y_center,
     #           X_right_wheel, Y_right_wheel)
+    return X_right_wheel, Y_right_wheel, X_left_wheel, Y_left_wheel, X_center, Y_center
 
 @initialize_speedupy
 def main():
