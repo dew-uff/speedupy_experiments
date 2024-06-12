@@ -5,14 +5,6 @@ import math
 
 # Default settings
 curve_distance_epsilon        = 1e-30
-curve_collinearity_epsilon    = 1e-30
-curve_angle_tolerance_epsilon = 0.01
-curve_recursion_limit         = 32
-m_cusp_limit                  = 0.0
-m_angle_tolerance             = 10*math.pi/180.0
-m_approximation_scale         = 1.0/4 
-m_distance_tolerance_square   = (0.5 / m_approximation_scale)**2
-epsilon                       = 1e-10
 
 @deterministic
 def calc_sq_distance( x1,y1, x2,y2 ):
@@ -22,8 +14,16 @@ def calc_sq_distance( x1,y1, x2,y2 ):
 
 @deterministic
 def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
+    curve_collinearity_epsilon    = 1e-30
+    curve_angle_tolerance_epsilon = 0.01
+    curve_recursion_limit         = 32
+    m_cusp_limit                  = 0.0
+    m_angle_tolerance             = 10*math.pi/180.0
+    m_approximation_scale         = 1.0/4 
+    m_distance_tolerance_square   = (0.5 / m_approximation_scale)**2
+    
     if level > curve_recursion_limit:
-        return
+        return points
 
     # Calculate all the mid-points of the line segments
     # -------------------------------------------------
@@ -69,7 +69,7 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
             if d2 > 0 and d2 < 1 and d3 > 0 and d3 < 1:
                 # Simple collinear case, 1---2---3---4
                 # We can leave just two endpoints
-                return
+                return points
 
             if d2 <= 0:
                 d2 = calc_sq_distance(x2, y2, x1, y1)
@@ -88,11 +88,11 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
         if d2 > d3:
             if d2 < m_distance_tolerance_square:
                 points.append( (x2, y2) )
-                return
+                return points
         else:
             if d3 < m_distance_tolerance_square:
                 points.append( (x3, y3) )
-                return
+                return points
 
     elif s == 1:
         # p1,p2,p4 are collinear, p3 is significant
@@ -100,7 +100,7 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
         if d3 * d3 <= m_distance_tolerance_square * (dx*dx + dy*dy):
             if m_angle_tolerance < curve_angle_tolerance_epsilon:
                 points.append((x23, y23) )
-                return
+                return points
 
             # Angle Condition
             # ---------------
@@ -110,12 +110,12 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
 
             if da1 < m_angle_tolerance:
                 points.extend( [(x2, y2),(x3, y3)] )
-                return
+                return points
 
             if m_cusp_limit != 0.0:
                 if da1 > m_cusp_limit:
                     points.append( (x3, y3) )
-                    return
+                    return points
 
     elif s == 2:
         # p1,p3,p4 are collinear, p2 is significant
@@ -123,7 +123,7 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
         if d2 * d2 <= m_distance_tolerance_square * (dx*dx + dy*dy):
             if m_angle_tolerance < curve_angle_tolerance_epsilon:
                 points.append( (x23, y23) )
-                return
+                return points
 
             # Angle Condition
             # ---------------
@@ -133,12 +133,12 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
 
             if da1 < m_angle_tolerance:
                 points.extend( [(x2, y2),(x3, y3)] )
-                return
+                return points
 
             if m_cusp_limit != 0.0:
                 if da1 > m_cusp_limit:
                     points.append( (x2, y2) )
-                    return
+                    return points
 
     elif s == 3:
         # Regular case
@@ -149,7 +149,7 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
 
             if m_angle_tolerance < curve_angle_tolerance_epsilon:
                 points.append( (x23, y23) )
-                return
+                return points
 
             # Angle & Cusp Condition
             # ----------------------
@@ -165,16 +165,16 @@ def cubic_recursive( points, x1, y1, x2, y2, x3, y3, x4, y4, level=0):
                 # Finally we can stop the recursion
                 # ---------------------------------
                 points.append( (x23, y23) )
-                return
+                return points
 
             if m_cusp_limit != 0.0:
                 if da1 > m_cusp_limit:
                     points.append( (x2, y2) )
-                    return
+                    return points
 
                 if da2 > m_cusp_limit:
                     points.append( (x3, y3) )
-                    return
+                    return points
 
     # Continue subdivision
     # --------------------
@@ -199,6 +199,7 @@ def cubic( p1, p2, p3, p4 ):
     points = []
     cubic_recursive( points, x1,y1, x2,y2, x3,y3, x4,y4 )
 
+    epsilon = 1e-10
     dx,dy = points[0][0]-x1, points[0][1]-y1
     if (dx*dx+dy*dy) > epsilon: points.insert(0, (x1,y1) )
     dx,dy = points[-1][0]-x4, points[-1][1]-y4
