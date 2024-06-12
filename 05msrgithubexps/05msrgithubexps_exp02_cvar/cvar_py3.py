@@ -36,6 +36,7 @@ def main(rewards):
 
 if __name__ == "__main__":
     import random
+    random.seed(0)
     # n = [int(x) for x in sys.argv[1:-2]]
     n = [random.randint(0, 1e9) for i in range (int(float(sys.argv[1])))]
     start = time.perf_counter()
