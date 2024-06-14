@@ -280,7 +280,7 @@ def comment_23(args, site, dataset, metadata, header, output):
 	if args.o:
 		ofile = args.o[0]
 	else:
-		ofile = site+'_'+dataset+'.csv'
+		ofile = site+'_'+dataset+'2.csv'
 	with open(ofile, 'w') as f:
 		f.write(metadata)
 		f.write(header)
