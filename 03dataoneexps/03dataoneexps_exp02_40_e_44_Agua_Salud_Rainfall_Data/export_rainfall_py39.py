@@ -24,7 +24,7 @@ def comment_2():
 def comment_3(ifile):
 	parser = argparse.ArgumentParser(
 		description='Export binary Agua Salud data to CSV')
-	parser.add_argument('-s', nargs=1, type=str, 
+	parser.add_argument('--site', nargs=1, type=str, 
 		required=False, help='site')
 	parser.add_argument('-d', nargs=1, type=str, 
 		required=False, help='dataset')
@@ -46,14 +46,14 @@ def comment_3(ifile):
 		required=False, help='[YYYY-MM-DDThh:mmZ] datetime of first measurement to export')
 	parser.add_argument('--last', nargs=1, type=str, 
 		required=False, help='[YYYY-MM-DDThh:mmZ] datetime of last measurement export')
-	args = parser.parse_args()
+	args, _ = parser.parse_known_args()
 	return args, parser
 
 # Set site
 def comment_4(args):
 	site = None
-	if args.s:
-		site = args.s[0]
+	if args.site:
+		site = args.site[0]
 		msg = 'Site: ' + site
 		print(msg)
 	return site
