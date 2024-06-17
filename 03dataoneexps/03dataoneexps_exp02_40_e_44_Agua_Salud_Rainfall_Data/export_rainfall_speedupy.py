@@ -80,6 +80,7 @@ def comment_6(args):
 	return root
 
 # Load sites
+###@deterministic h5py objects cannot be pickled!
 def comment_7(root):
 	site_data = root['site_data']
 	return site_data
@@ -109,7 +110,8 @@ def comment_8(args, site_data):
 				sites.append(msg)
 			else:
 				sites.append(site)
-		site_list = '\n'.join(sites)
+		temp15 = '\n'
+		site_list = temp15.join(sites)
 		msg = 'Available Sites:\n\n' + site_list + "\n"
 		print(msg)
 		sys.exit()
@@ -117,7 +119,8 @@ def comment_8(args, site_data):
 # Print available datasets
 def comment_9(args, site, site_data):
 	if site and args.ld:
-		data_list = '\n'.join(list(site_data[site]))
+		temp16 = '\n'
+		data_list = temp16.join(list(site_data[site]))
 		msg = 'Available ' + site + ' datasets:\n\n' + data_list + '\n'
 		print(msg)
 		sys.exit()
@@ -141,11 +144,15 @@ def comment_10(args, root):
 					print(msg)
 				for dset in list(root[grp][sgrp]):
 					# Start date
-					start = root[grp][sgrp][dset][0][0].decode('UTF-8').replace(' ', 'T')
+					temp0 = root[grp][sgrp][dset][0][0]
+					temp1 = temp0.decode('UTF-8')
+					start = temp1.replace(' ', 'T')
 
 
 					# End date
-					end = root[grp][sgrp][dset][-1][0].decode('UTF-8').replace(' ', 'T')
+					temp2 = root[grp][sgrp][dset][-1][0]
+					temp3 = temp2.decode('UTF-8')
+					end = temp3.replace(' ', 'T')
 
 					# Print info
 					if dset == list(root[grp][sgrp])[-1]:
@@ -167,18 +174,26 @@ def comment_11(site, dataset, site_data, parser):
 	return data
 
 # Collect site metadata
+####@deterministic h5py objects cannot be pickled!
 def comment_12(site, dataset, site_data):
 	msg = '# site: ' + site + '\ndataset: ' + dataset + '\n'
 	metadata = msg
-	for key in list(site_data[site].attrs.keys()):
+	temp10 = site_data[site]
+	for key in list(temp10.attrs.keys()):
 		try:
-			metadata += ('{}: {}\n'.format(key, 
-				site_data[site].attrs[key].decode('UTF-8')))
+			temp11 = site_data[site]
+			temp12 = temp11.attrs[key]
+			temp17 = '{}: {}\n'
+			metadata += (temp17.format(key, 
+				temp12.decode('UTF-8')))
 		except AttributeError:
-			metadata += ('{}: {}\n'.format(key, str(site_data[site].attrs[key])))
+			temp13 = site_data[site]
+			temp18 = '{}: {}\n'
+			metadata += (temp18.format(key, str(temp13.attrs[key])))
 	return metadata
 
 # Collect dataset metadata
+####@deterministic h5py objects cannot be pickled!
 def comment_13(data, args, metadata):
 	for key in list(data.attrs.keys()):
 		try:
@@ -186,17 +201,20 @@ def comment_13(data, args, metadata):
 				metadata += (key + ': ' + argsnd[0] + '\n')
 				continue
 
-			metadata += (key + ': ' + data.attrs[key].decode('UTF-8') + '\n')
+			temp14 = data.attrs[key]
+			metadata += (key + ': ' + temp14.decode('UTF-8') + '\n')
 		except AttributeError:
 			metadata += (key + ': ' + str(data.attrs[key]) + '\n')
 	return metadata
 
 # Comment
+@deterministic
 def comment_14(metadata):
 	metadata = metadata.replace('\n', '\n# ') + '\n'
 	return metadata
 
 # Extract first and last measurement datetimes from command line
+@deterministic
 def comment_15(args):
 	first, last = None, None
 	if args.first:
@@ -206,12 +224,19 @@ def comment_15(args):
 	return first, last
 
 # Extract first and last measurement from dataset
+###@deterministic h5py objects cannot be pickled!
 def comment_16(data):
-	starts = data[0][0].decode('UTF-8').replace(' ', 'T')
-	ends = data[-1][0].decode('UTF-8').replace(' ', 'T')
+	temp4 =  data[0][0]
+	temp5 = temp4.decode('UTF-8')
+	starts = temp5.replace(' ', 'T')
+	
+	temp6 = data[-1][0]
+	temp7 =temp6.decode('UTF-8')  
+	ends = temp7.replace(' ', 'T')
 	return starts, ends
 
 # Convert to datetimes
+@deterministic
 def comment_17(starts, ends):
 	start = datetime.strptime(starts, '%Y-%m-%dT%H:%MZ')
 	end = datetime.strptime(ends, '%Y-%m-%dT%H:%MZ')
@@ -223,7 +248,8 @@ def comment_18(first, start, end, frequency, last):
 	if first and start < first < end:
 		# Initial index
 		initial = int((first - start) / frequency)
-		print('Start export: {}'.format(first))
+		temp19 = 'Start export: {}'
+		print(temp19.format(first))
 	else:
 		print('Start export: ' + str(start))
 
@@ -247,6 +273,7 @@ def comment_19(initial, final, data):
 	return data
 
 # Encode output
+@deterministic
 def comment_20(data):
 	output = ''
 	for row in data:
@@ -254,14 +281,17 @@ def comment_20(data):
 		row_list = [r for r in row]
 
 		# Decode first value (datetime string)
-		row_list[0] = row_list[0].decode('UTF-8')
+		temp8 = row_list[0]
+		row_list[0] = temp8.decode('UTF-8')
 
 		# Convert all values to strings
 		string_list = [str(s) for s in row_list]
 
 		# Write to output
-		output += ','.join(string_list) + '\n'
+		temp9 = ','
+		output += temp9.join(string_list) + '\n'
 	return output
+
 
 # Update no data value
 def comment_21(args, output):
@@ -270,8 +300,10 @@ def comment_21(args, output):
 	return output
 
 # Header
+@deterministic
 def comment_22(data):
-	header = ','.join(data.dtype.names) + '\n'
+	temp20 = ','
+	header = temp20.join(data.dtype.names) + '\n'
 	return header
 
 # Save to CSV
