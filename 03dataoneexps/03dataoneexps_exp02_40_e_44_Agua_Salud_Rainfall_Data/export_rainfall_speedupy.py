@@ -214,7 +214,6 @@ def comment_14(metadata):
 	return metadata
 
 # Extract first and last measurement datetimes from command line
-@deterministic
 def comment_15(args):
 	first, last = None, None
 	if args.first:
@@ -273,7 +272,7 @@ def comment_19(initial, final, data):
 	return data
 
 # Encode output
-@deterministic
+###@deterministic h5py objects cannot be pickled!
 def comment_20(data):
 	output = ''
 	for row in data:
@@ -300,7 +299,7 @@ def comment_21(args, output):
 	return output
 
 # Header
-@deterministic
+###@deterministic h5py objects cannot be pickled!
 def comment_22(data):
 	temp20 = ','
 	header = temp20.join(data.dtype.names) + '\n'

@@ -243,7 +243,7 @@ def comment_19(initial, final, data):
 	return data
 
 # Encode output
-@deterministic
+###@deterministic h5py objects cannot be pickled!
 def comment_20(data):
 	output = ''
 	for row in data:
@@ -269,7 +269,7 @@ def comment_21(args, output):
 	return output
 
 # Header
-@deterministic
+###@deterministic h5py objects cannot be pickled!
 def comment_22(data):
 	temp22 = ','
 	header = temp22.join(data.dtype.names) + '\n'
