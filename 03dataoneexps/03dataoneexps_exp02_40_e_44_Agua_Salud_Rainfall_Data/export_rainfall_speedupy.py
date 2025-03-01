@@ -224,7 +224,8 @@ def comment_19(initial, final, data):
     print('Exporting ' + str(len(data)) + 'measurements...')
     return data
 
-@maybe_deterministic
+# Encode output
+###@deterministic h5py objects cannot be pickled!
 def comment_20(data):
     output = ''
     for row in data:
@@ -242,7 +243,8 @@ def comment_21(args, output):
         output = output.replace('-9999.9', args.nd[0])
     return output
 
-@maybe_deterministic
+# Header
+###@deterministic h5py objects cannot be pickled!
 def comment_22(data):
     temp20 = ','
     header = temp20.join(data.dtype.names) + '\n'
@@ -264,27 +266,28 @@ def comment_23(args, site, dataset, metadata, header, output):
 
 @initialize_speedupy
 def main():
-    ifile = comment_1()
-    frequency = comment_2()
-    (args, parser) = comment_3(ifile)
-    site = comment_4(args)
-    dataset = comment_5(args, site)
-    root = comment_6(args)
-    site_data = comment_7(root)
-    comment_8(args, site_data)
-    comment_9(args, site, site_data)
-    comment_10(args, root)
-    data = comment_11(site, dataset, site_data, parser)
-    metadata = comment_12(site, dataset, site_data)
-    metadata = comment_13(data, args, metadata)
-    metadata = comment_14(metadata)
-    (first, last) = comment_15(args)
-    (starts, ends) = comment_16(data)
-    (start, end) = comment_17(starts, ends)
-    (initial, final) = comment_18(first, start, end, frequency, last)
-    data = comment_19(initial, final, data)
-    output = comment_20(data)
-    output = comment_21(args, output)
-    header = comment_22(data)
-    comment_23(args, site, dataset, metadata, header, output)
+	ifile = comment_1()
+	frequency = comment_2()
+	args, parser = comment_3(ifile)
+	site = comment_4(args)
+	dataset = comment_5(args, site)
+	root = comment_6(args)
+	site_data = comment_7(root)
+	comment_8(args, site_data)
+	comment_9(args, site, site_data)
+	comment_10(args, root)
+	data = comment_11(site, dataset, site_data, parser)
+	metadata = comment_12(site, dataset, site_data)
+	metadata = comment_13(data, args, metadata)
+	metadata = comment_14(metadata)
+	first, last = comment_15(args)
+	starts, ends = comment_16(data)
+	start, end = comment_17(starts, ends)
+	initial, final = comment_18(first, start, end, frequency, last)
+	data = comment_19(initial, final, data)
+	output = comment_20(data)
+	output = comment_21(args, output)
+	header = comment_22(data)
+	comment_23(args, site, dataset, metadata, header, output)
+
 main()

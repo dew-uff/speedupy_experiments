@@ -212,7 +212,8 @@ def comment_19(initial, final, data):
     print('Exporting ' + str(len(data)) + ' measurements...')
     return data
 
-@maybe_deterministic
+# Encode output
+###@deterministic h5py objects cannot be pickled!
 def comment_20(data):
     output = ''
     for row in data:
@@ -230,7 +231,8 @@ def comment_21(args, output):
         output = output.replace('-9999.9', args.nd[0])
     return output
 
-@maybe_deterministic
+# Header
+###@deterministic h5py objects cannot be pickled!
 def comment_22(data):
     temp22 = ','
     header = temp22.join(data.dtype.names) + '\n'
