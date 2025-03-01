@@ -36,7 +36,7 @@ def loop_solver(n):
     u[n - 1, :] = np.sin(x) * np.exp(-pi_c)
     iteration = 0
     error = 2
-    while iteration < 100000 and error > 1e-06:
+    while iteration < 50000 and error > 1e-06:
         (u, error) = loop_time_step(u)
         iteration += 1
     return (u, error, iteration)
@@ -65,7 +65,7 @@ def vectorized_solver(n):
     u[n - 1, :] = np.sin(x) * np.exp(-pi_c)
     iteration = 0
     error = 2
-    while iteration < 100000 and error > 1e-06:
+    while iteration < 50000 and error > 1e-06:
         (u, error) = vector_time_step(u)
         iteration += 1
     return (u, error, iteration)
