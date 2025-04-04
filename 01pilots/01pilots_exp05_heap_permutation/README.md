@@ -1,5 +1,10 @@
 # Heap Permutation Experiment
 
+## Experiment dependencies
+This experiment has no dependencies.
+
+## Trials Used in the Article
+To install them, execute: **pip install numpy, scipy, cython*
 The five trials used on the memoization techniques article use the same script **heap_permutation.py** with the following inputs:
 
 - **8**
