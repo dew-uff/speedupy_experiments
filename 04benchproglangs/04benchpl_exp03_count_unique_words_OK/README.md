@@ -1,5 +1,9 @@
 # Count Unique Words Experiment
 
+## Experiment dependencies
+This experiment has no dependencies.
+
+## Trials Used in the Article
 The five trials used on the memoization techniques article use the same script **count_unique_words_speedupy.py** with the following inputs:
 
 - **pg100.txt** (Available at https://www.gutenberg.org/cache/epub/100/pg100.txt)
