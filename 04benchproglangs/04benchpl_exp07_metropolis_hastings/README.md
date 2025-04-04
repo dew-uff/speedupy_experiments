@@ -1,5 +1,11 @@
 # Metropolis Hastings Experiment
 
+## Experiment dependencies
+This experiment has the following dependency: numpy
+
+To install it, execute: **pip install numpy**
+
+## Trials Used in the Article
 The five trials used on the memoization techniques article use the same script **metropolis_hastings.py** with the following inputs:
 
 - **75000**
