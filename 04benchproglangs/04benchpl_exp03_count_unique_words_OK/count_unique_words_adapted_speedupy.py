@@ -18,22 +18,28 @@ def strip_word(word):
 def count_words_dictionary(file_name):
     temp2 = open(file_name)
     data = temp2.read()
-    words = data.split()
-    words.sort()
-    dictionary = defaultdict(int)
-    for i in range(0, len(words), 300):
-        chunk = words[i:i + 300]
-        partial = process_count_words_dictionary(chunk)
-        for (k, v) in partial.items():
-            dictionary[k] += v
-    return len(dictionary)
+    return process_count_words_dictionary(data)
 
 @deterministic
 def process_count_words_dictionary(data):
     dictionary = defaultdict(int)
-    for word in data:
-        dictionary[strip_word(word)] += 1
-    return dictionary
+    chunk_size = 300
+    words = data.split()
+    for i in range(0, len(words), chunk_size):
+        chunk = words[i:i + chunk_size]
+        partial = new_process_word_chunk_dictionary(chunk)
+        for (k, v) in partial.items():
+            dictionary[k] += v
+    del dictionary['']
+    return len(dictionary)
+
+@deterministic
+def new_process_word_chunk_dictionary(words):
+    partial_dict = defaultdict(int)
+    for word in words:
+        cleaned = strip_word(word)
+        partial_dict[cleaned] += 1
+    return partial_dict
 
 @maybe_deterministic
 def count_words_set(file_name):
@@ -43,12 +49,19 @@ def count_words_set(file_name):
 
 @deterministic
 def process_count_words_set(data):
-    lines = data.splitlines()
+    words = data.split()
     uniques = set()
-    for line in lines:
-        uniques |= set((strip_word(m) for m in line.split()))
+    chunk_size = 300
+    for i in range(0, len(words), chunk_size):
+        chunk = words[i:i + chunk_size]
+        chunk_set = new_process_word_chunk_set(chunk)
+        uniques |= chunk_set
     uniques.remove('')
     return len(uniques)
+
+@deterministic
+def new_process_word_chunk_set(words):
+    return set((strip_word(w) for w in words))
 if len(sys.argv) < 1:
     print('Usage:')
     print('     python ' + sys.argv[0] + ' file_name')
