@@ -15,7 +15,7 @@ def solve(n, F_solution):
 
 @deterministic
 def exp_main(F_solution):
-    n_solutions = 500000
+    n_solutions = 571401  # intervalo de 0.035
     x_list = np.linspace(1, 20000.0, n_solutions)
     F_list = np.empty_like(x_list)
     for i in range(n_solutions):
